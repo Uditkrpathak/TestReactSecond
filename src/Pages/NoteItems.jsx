@@ -11,7 +11,8 @@ const NoteItem = ({ note }) => {
       <p className="text-black">{note.body}</p>
       
       <div className="flex justify-between mt-4">
-        <Link
+        <Link 
+        
           className="px-4 py-2 text-white transition bg-black rounded-lg hover:bg-gray-800"
         >
           View

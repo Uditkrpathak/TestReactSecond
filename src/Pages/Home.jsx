@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { UserContext } from "../Context/UserContext";
 import NoteItem from "./NoteItems";
 import axios from "axios";
-import { motion } from "framer-motion";
-
+import  {motion}  from "framer-motion";
+import '../assets/Loader.css'
 const Home = () => {
-  const { light } = useContext(UserContext);
+  const { light , loading } = useContext(UserContext);
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts?_limit=8")
@@ -21,7 +21,7 @@ const Home = () => {
     <div className={`${light ? "bg-black text-white" : "bg-white text-black"}`}>
       <section
         className={` px-4 py-4 ${
-          light ? "bg-[#005C97] text-white" : "bg-white text-black"
+          light ? "bg-[] text-white" : "bg-gray-300 text-black"
         }`}
       >
         <div className="flex flex-col items-center mx-auto max-w-7xl md:flex-row">
@@ -64,9 +64,15 @@ const Home = () => {
 
       <div className="p-4 mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-8 mt-10 md:grid-cols-2">
-          {notes.map((note) => (
+         
+
+          {
+            loading ? (<div class="loader"></div>) : 
+                notes.map((note) => (
             <NoteItem key={note.id} note={note} />
-          ))}
+          ))
+            
+          }
         </div>
       </div>
     </div>

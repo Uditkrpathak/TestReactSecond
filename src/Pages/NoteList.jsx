@@ -1,21 +1,23 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NoteList = () => {
   const { addNote, body, setBody, title, setTitle, light } =
     useContext(UserContext);
  
-
+    const notify = () => toast('Added Succesfully');
   const handleSubmit = (e) => {
     e.preventDefault();
     if (addNote) {
       addNote({ id: Date.now(), title, body });
       setTitle("");
       setBody("");
+      
     }
   };
-
+  
   return (
     <div
       className={`w-full h-screen flex items-center justify-center ${
@@ -39,10 +41,10 @@ const NoteList = () => {
             }`}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required
+           
           />
 
-          <textarea
+          <input
             placeholder="Body"
             className={`p-3 w-full border rounded-lg ${
               light ? "bg-blue-200 text-green-900" : "bg-gray-100 text-black"
@@ -54,10 +56,12 @@ const NoteList = () => {
 
           <button
             type="submit"
+            onClick={notify} 
             className="w-full px-4 py-2 text-white transition bg-green-500 rounded-lg hover:bg-green-600"
           >
             Add Note
           </button>
+          <ToastContainer />
         </form>
       </div>
     </div>

@@ -68,7 +68,7 @@ const Navbar = () => {
         >
           Notes+
         </NavLink>
-        {loading ? <p className="mt-4 text-center">Loading notes...</p> : <NoteList />}
+        
       </div>
     </div>
   );
